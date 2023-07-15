@@ -2,7 +2,6 @@
 """"Counts all the data using loops"""
 import requests
 
-
 def count_words(subreddit, word_list, after="", words_count={}):
     """"Module will count with loops"""
     url = "https://www.reddit.com/r/{}/hot.json?limit=100" \
@@ -26,14 +25,13 @@ def count_words(subreddit, word_list, after="", words_count={}):
     hot_articles = json_res.get('data').get('children')
     [hot_titles.append(article.get('data').get('title'))
      for article in hot_articles]
-
     
     for i in range(len(hot_titles)):
         for title_word in hot_titles[i].lower().split():
             for word in words:
                 if word.lower() == title_word:
                     words_count[word] = words_count.get(word) + 1
-
+                    
     if has_next:
         return count_words(subreddit, word_list, after, words_count)
     else:

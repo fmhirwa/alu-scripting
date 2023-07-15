@@ -2,6 +2,7 @@
 """" Checks to see if the limits is met"""
 import requests
 
+
 def top_ten(subreddit):
     """"Standard API request"""
     url = "https://www.reddit.com/r/{}/hot.json?limit=10" \
